@@ -1,0 +1,13 @@
+.Header {
+    background-color: rgb(8, 8, 8);
+    height: 50px;
+    padding: 10px;
+    box-sizing: content-box;
+}
+
+.logo {
+    color: white;
+    font-size: 30px;
+    line-height: 50px;
+    font-weight: bold;
+}

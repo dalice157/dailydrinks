@@ -1,0 +1,27 @@
+@import './button.css';
+.wrap {
+    padding: 20px;
+    background-color: #fafafa;
+    box-sizing: content-box;
+    text-align: center;
+    height: 80vh;
+}
+
+.table {
+    width: 100%;
+    border: 1px solid #d9d9d9;
+}
+
+.table th,
+.table td {
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+}
+
+.table th {
+    font-weight: bold;
+}
+
+.table button+button {
+    margin-left: 5px;
+}
