@@ -34,7 +34,7 @@ const List= ({...props}) => {
 							<button onClick={(id)=>onUpdate(index)} className="button" type="button">Update</button>
 							 :
 							 <Fragment>
-								<button onClick={(id)=>onEdit(item.id)} className="button" type="button">Edit</button>
+								<button onClick={(id, bool)=>onEdit(item.id, true)} className="button" type="button">Edit</button>
 								<button onClick={(id)=>onDel(item.id)} className="button danger" type="button">Delete</button>
 							 </Fragment>;
 							return (

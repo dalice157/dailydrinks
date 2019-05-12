@@ -16,22 +16,21 @@ class App extends Component {
     notesVal: '',
     nameUpdate: '',
     priceUpdate: '',
-    notesUpdate: ''
+    notesUpdate: '',
   }
 
   onAdd = (e)=>{
     e.preventDefault();
     const {nameVal, priceVal, notesVal} = this.state;
-    orderItems.unshift(
-      {
-        id: orderItems.length+1, 
-        name: nameVal, 
-        price: priceVal,
-        notes: notesVal
-      }
-    )
+    this.state.list.push({
+      id: orderItems.length+1, 
+      name: nameVal, 
+      price: priceVal,
+      notes: notesVal,
+      edit: false
+    })
     this.setState({
-      list: orderItems,
+      list: this.state.list,
       nameVal: '',
       priceVal: '',
       notesVal: ''
@@ -67,20 +66,19 @@ class App extends Component {
     });
   }
 
-  onEdit = (currentId)=>{
+  onEdit = (currentId, bool)=>{
     const item = orderItems.find((item) => item.id === currentId);
     this.setState({
-      isEdit: true,
       nameUpdate: item.name, 
       priceUpdate: item.price,
       notesUpdate: item.notes,
+      isEdit: bool
     })
   }
   
   onUpdate = ( itemIndex)=> {
     const order = orderItems[itemIndex];
 
-    console.log("index:", order)
     orderItems.splice(itemIndex, 1);
     orderItems.push(
       {
@@ -91,7 +89,7 @@ class App extends Component {
       }
     );
     this.setState({
-      isEdit:false,
+      isEdit: false,
       list: orderItems
     }); 
   }
