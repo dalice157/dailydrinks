@@ -29,9 +29,9 @@ const List= ({...props}) => {
 				</thead>
 				<tbody>
 					{
-						data.map(item => {
+						data.map((item,index) => {
 							const isEditBtn = isEdit ? 
-							<button onClick={(id)=>onUpdate(item.id)} className="button" type="button">Update</button>
+							<button onClick={(id)=>onUpdate(index)} className="button" type="button">Update</button>
 							 :
 							 <Fragment>
 								<button onClick={(id)=>onEdit(item.id)} className="button" type="button">Edit</button>

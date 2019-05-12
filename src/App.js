@@ -78,10 +78,22 @@ class App extends Component {
   }
   
   onUpdate = ( itemIndex)=> {
-    var order = orderItems[itemIndex];
+    const order = orderItems[itemIndex];
+
+    console.log("index:", order)
     orderItems.splice(itemIndex, 1);
-    orderItems.push(order);
-    this.setState({list: orderItems}); 
+    orderItems.push(
+      {
+        id: order.id, 
+        name: this.state.nameUpdate, 
+        price: this.state.priceUpdate,
+        notes: this.state.notesUpdate
+      }
+    );
+    this.setState({
+      isEdit:false,
+      list: orderItems
+    }); 
   }
 
   render() {
