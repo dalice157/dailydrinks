@@ -1,15 +1,13 @@
 import React, {Component, Fragment } from 'react';
 import Header from './Header';
 import List from './List';
-import orderData from './order.json'
+import orderItems from './order.json'
 
-const orderItems = [];
-orderItems.push(orderData[0]);
 
 class App extends Component {
 
   state = {
-    list: orderItems,
+    lists: orderItems,
     isEdit: false,
     nameVal: '',
     priceVal: '',
@@ -21,21 +19,21 @@ class App extends Component {
 
   onAdd = (e)=>{
     e.preventDefault();
-    const {nameVal, priceVal, notesVal} = this.state;
-    this.state.list.push({
+    const {nameVal, priceVal, notesVal, lists} = this.state;
+    const newList = [ ...lists, {
       id: orderItems.length+1, 
       name: nameVal, 
       price: priceVal,
       notes: notesVal,
       edit: false
-    })
+    }];
+    console.log('newList:', newList);
     this.setState({
-      list: this.state.list,
+      lists: newList,
       nameVal: '',
       priceVal: '',
       notesVal: ''
     });
-    console.log("object:", this.state.list)
   }
   onAddNameChange = (e)=>{
     this.setState({nameVal: e.target.value});
@@ -47,54 +45,62 @@ class App extends Component {
     this.setState({notesVal: e.target.value});
   }
 
-  onEditNameChange = (e)=>{
-    this.setState({nameUpdate: e.target.value});
+  onEditNameChange = (e, currentId)=>{
+    const { lists } = this.state;
+    const editList = lists.map(item => {
+      item.name = item.id === currentId ? e.target.value : item.name;
+      return item;
+    })
+    this.setState({lists: editList});
   }
-  onEditPriceChange = (e)=>{
-    this.setState({priceUpdate: e.target.value});
+  onEditPriceChange = (e, currentId)=>{
+    const { lists } = this.state;
+    const editList = lists.map(item => {
+      item.price = item.id === currentId ? e.target.value : item.price;
+      return item;
+    })
+    this.setState({lists: editList});
   }
-  onEditNotesChange = (e)=>{
-    this.setState({notesUpdate: e.target.value});
+  onEditNotesChange = (e, currentId)=>{
+    const { lists } = this.state;
+    const editList = lists.map(item => {
+      item.notes = item.id === currentId ? e.target.value : item.notes;
+      return item;
+    })
+    this.setState({lists: editList});
   }
   onDel = (currentId)=>{
-    const idx = orderItems.findIndex((item) => item.id === currentId);
-    if (idx !== -1){
-      orderItems.splice(idx, 1)
-    }
+    const { lists } = this.state;
+    const idx = lists.filter((item) => item.id !== currentId);
     this.setState({
-      list: orderItems
+      list: idx
     });
   }
 
-  onEdit = (currentId, bool)=>{
-    const item = orderItems.find((item) => item.id === currentId);
+  onEdit = (currentId)=>{
+    const { lists } = this.state;
+    const editList = lists.map(item => {
+      item.edit = item.id === currentId ? true : item.edit;
+      return item;
+    });
     this.setState({
-      nameUpdate: item.name, 
-      priceUpdate: item.price,
-      notesUpdate: item.notes,
-      isEdit: bool
+      lists: editList
     })
   }
   
-  onUpdate = ( itemIndex)=> {
-    const order = orderItems[itemIndex];
-
-    orderItems.splice(itemIndex, 1);
-    orderItems.push(
-      {
-        id: order.id, 
-        name: this.state.nameUpdate, 
-        price: this.state.priceUpdate,
-        notes: this.state.notesUpdate
-      }
-    );
+  onUpdate = ( currentId )=> {
+    const { lists } = this.state;
+    const updateList = lists.map(item => {
+      item.edit = item.id === currentId ? false : item.edit;
+      return item;
+    });
     this.setState({
-      isEdit: false,
-      list: orderItems
-    }); 
+      lists: updateList
+    })
   }
 
   render() {
+    console.log('lists:', this.state.lists);
     const {nameVal,priceVal,notesVal, isEdit, nameUpdate, priceUpdate, notesUpdate} = this.state;
     const addEvent = {
       nameVal,
@@ -118,9 +124,9 @@ class App extends Component {
     };
     return (
       <Fragment>
-        <Header logo="17 Media Daily Drinks" />
+        <Header logo="Daily Drinks" />
         <List 
-          data={this.state.list}
+          data={this.state.lists}
           addEvent={addEvent}
           updateEvent={updateEvent}
           onDel = {this.onDel}

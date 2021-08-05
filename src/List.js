@@ -30,8 +30,8 @@ const List= ({...props}) => {
 				<tbody>
 					{
 						data.map((item,index) => {
-							const isEditBtn = isEdit ? 
-							<button onClick={(id)=>onUpdate(index)} className="button" type="button">Update</button>
+							const isEditBtn = item.edit ? 
+							<button onClick={(id)=>onUpdate(item.id)} className="button" type="button">Update</button>
 							 :
 							 <Fragment>
 								<button onClick={(id, bool)=>onEdit(item.id, true)} className="button" type="button">Edit</button>
@@ -41,22 +41,22 @@ const List= ({...props}) => {
 								<tr key={item.id}>
 								<td valign="middle">
 									{
-										isEdit?
-										<input name="Name" onChange={onEditNameChange} value={nameUpdate} type="text" />:
+										item.edit?
+										<input name="Name" onChange={(e)=>onEditNameChange(e, item.id)} value={item.name} type="text" />:
 										item.name
 									}
 								</td>
 								<td valign="middle">
 									{
-										isEdit?
-										<input name="Price" type="number" onChange={onEditPriceChange} value={priceUpdate} /> :
+										item.edit?
+										<input name="Price" type="number" onChange={(e)=>onEditPriceChange(e, item.id)} value={item.price} /> :
 										`$ ${item.price} 元`
 									}
 								</td>
 								<td valign="middle">
 									{
-										isEdit?
-										<textarea name="Notes" rows="5" onChange={onEditNotesChange} value={notesUpdate} />:
+										item.edit?
+										<textarea name="Notes" rows="5" onChange={(e)=>onEditNotesChange(e, item.id)} value={item.notes} />:
 										item.notes
 									}
 								</td>
