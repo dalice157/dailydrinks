@@ -17,7 +17,7 @@ class App extends Component {
     e.preventDefault();
     const {nameVal, priceVal, notesVal, lists} = this.state;
     const newList = [ ...lists, {
-      id: orderItems.length + 1, 
+      id: lists.length + 1, 
       name: nameVal, 
       price: priceVal,
       notes: notesVal,
