@@ -1,43 +1,21 @@
 import React, {Component, Fragment } from 'react';
 import Header from './Header';
 import List from './List';
+import InputField from './InputField'
 import orderItems from './order.json'
+import './App.css'
 
 
 class App extends Component {
 
   state = {
     lists: orderItems,
-    nameVal: '',
-    priceVal: '',
-    notesVal: '',
   }
 
-  onAdd = (e)=>{
-    e.preventDefault();
-    const {nameVal, priceVal, notesVal, lists} = this.state;
-    const newList = [ ...lists, {
-      id: lists.length + 1, 
-      name: nameVal, 
-      price: priceVal,
-      notes: notesVal,
-      edit: false
-    }];
+  getLists = (lists) => {
     this.setState({
-      lists: newList,
-      nameVal: '',
-      priceVal: '',
-      notesVal: ''
-    });
-  }
-  onAddNameChange = (e)=>{
-    this.setState({nameVal: e.target.value});
-  }
-  onAddPriceChange = (e)=>{
-    this.setState({priceVal: e.target.value});
-  }
-  onAddNotesChange = (e)=>{
-    this.setState({notesVal: e.target.value});
+      lists
+    })
   }
 
   onEditNameChange = (e, currentId)=>{
@@ -48,6 +26,7 @@ class App extends Component {
     })
     this.setState({lists: editList});
   }
+
   onEditPriceChange = (e, currentId)=>{
     const { lists } = this.state;
     const editList = lists.map(item => {
@@ -56,6 +35,7 @@ class App extends Component {
     })
     this.setState({lists: editList});
   }
+
   onEditNotesChange = (e, currentId)=>{
     const { lists } = this.state;
     const editList = lists.map(item => {
@@ -64,6 +44,7 @@ class App extends Component {
     })
     this.setState({lists: editList});
   }
+
   onDel = (currentId)=>{
     const { lists } = this.state;
     const idx = lists.filter((item) => item.id !== currentId);
@@ -96,17 +77,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('lists:', this.state.lists);
-    const {nameVal,priceVal,notesVal} = this.state;
-    const addEvent = {
-      nameVal,
-      priceVal,
-      notesVal,
-      onAdd: this.onAdd,
-      onAddNameChange: this.onAddNameChange,
-      onAddPriceChange: this.onAddPriceChange,
-      onAddNotesChange: this.onAddNotesChange
-    };
     const updateEvent = {
       onEdit: this.onEdit,
       onUpdate: this.onUpdate,
@@ -117,13 +87,18 @@ class App extends Component {
     return (
       <Fragment>
         <Header logo="Daily Drinks" />
-        <List 
-          data={this.state.lists}
-          addEvent={addEvent}
-          updateEvent={updateEvent}
-          onDel = {this.onDel}
-        />
-      </Fragment>
+        <div className="wrap">
+          <InputField 
+            getLists={this.getLists}
+            data={this.state.lists}
+          />
+          <List 
+            data={this.state.lists}
+            updateEvent={updateEvent}
+            onDel = {this.onDel}
+          />
+        </div>
+        </Fragment>
     )
   }
 }

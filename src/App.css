@@ -1,0 +1,7 @@
+.wrap {
+  padding: 20px;
+  background-color: #fafafa;
+  box-sizing: content-box;
+  text-align: center;
+  height: 80vh;
+}
