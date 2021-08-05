@@ -8,26 +8,21 @@ class App extends Component {
 
   state = {
     lists: orderItems,
-    isEdit: false,
     nameVal: '',
     priceVal: '',
     notesVal: '',
-    nameUpdate: '',
-    priceUpdate: '',
-    notesUpdate: '',
   }
 
   onAdd = (e)=>{
     e.preventDefault();
     const {nameVal, priceVal, notesVal, lists} = this.state;
     const newList = [ ...lists, {
-      id: orderItems.length+1, 
+      id: orderItems.length + 1, 
       name: nameVal, 
       price: priceVal,
       notes: notesVal,
       edit: false
     }];
-    console.log('newList:', newList);
     this.setState({
       lists: newList,
       nameVal: '',
@@ -72,8 +67,9 @@ class App extends Component {
   onDel = (currentId)=>{
     const { lists } = this.state;
     const idx = lists.filter((item) => item.id !== currentId);
+    console.log('idx:', idx);
     this.setState({
-      list: idx
+      lists: idx
     });
   }
 
@@ -101,7 +97,7 @@ class App extends Component {
 
   render() {
     console.log('lists:', this.state.lists);
-    const {nameVal,priceVal,notesVal, isEdit, nameUpdate, priceUpdate, notesUpdate} = this.state;
+    const {nameVal,priceVal,notesVal} = this.state;
     const addEvent = {
       nameVal,
       priceVal,
@@ -112,10 +108,6 @@ class App extends Component {
       onAddNotesChange: this.onAddNotesChange
     };
     const updateEvent = {
-      isEdit,
-      nameUpdate,
-      priceUpdate,
-      notesUpdate,
       onEdit: this.onEdit,
       onUpdate: this.onUpdate,
       onEditNameChange: this.onEditNameChange,

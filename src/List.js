@@ -5,10 +5,7 @@ import styles from './List.css';
 
 const List= ({...props}) => {
 	const {data, addEvent, onDel, updateEvent} = props;
-	const {isEdit,
-		nameUpdate,
-		priceUpdate,
-		notesUpdate,onEdit,onUpdate, onEditNameChange, onEditPriceChange, onEditNotesChange } = updateEvent;
+	const {onEdit, onUpdate, onEditNameChange, onEditPriceChange, onEditNotesChange } = updateEvent;
 	
   return (
     <div className="wrap">
@@ -29,13 +26,13 @@ const List= ({...props}) => {
 				</thead>
 				<tbody>
 					{
-						data.map((item,index) => {
+						data.map((item) => {
 							const isEditBtn = item.edit ? 
-							<button onClick={(id)=>onUpdate(item.id)} className="button" type="button">Update</button>
+							<button onClick={()=>onUpdate(item.id)} className="button" type="button">Update</button>
 							 :
 							 <Fragment>
-								<button onClick={(id, bool)=>onEdit(item.id, true)} className="button" type="button">Edit</button>
-								<button onClick={(id)=>onDel(item.id)} className="button danger" type="button">Delete</button>
+								<button onClick={()=>onEdit(item.id)} className="button" type="button">Edit</button>
+								<button onClick={()=>onDel(item.id)} className="button danger" type="button">Delete</button>
 							 </Fragment>;
 							return (
 								<tr key={item.id}>
