@@ -1,13 +1,12 @@
 import React, {Fragment} from 'react';
-import CSSModules from 'react-css-modules';
-import styles from './List.css';
+import styles from './List.scss';
 
 const List= ({...props}) => {
 	const {data, onDel, updateEvent} = props;
 	const {onEdit, onUpdate, onEditNameChange, onEditPriceChange, onEditNotesChange } = updateEvent;
 	
   return (
-    <table className="table">
+    <table className={styles.table}>
       <thead>
       <tr>
         <th>Name</th>
@@ -20,11 +19,11 @@ const List= ({...props}) => {
         {
           data.map((item) => {
             const isEditBtn = item.edit ? 
-            <button onClick={()=>onUpdate(item.id)} className="button" type="button">Update</button>
+            <button onClick={()=>onUpdate(item.id)} className={styles.button} type="button">Update</button>
               :
               <Fragment>
-              <button onClick={()=>onEdit(item.id)} className="button" type="button">Edit</button>
-              <button onClick={()=>onDel(item.id)} className="button danger" type="button">Delete</button>
+              <button onClick={()=>onEdit(item.id)} className={styles.button} type="button">Edit</button>
+              <button onClick={()=>onDel(item.id)} className={`${styles.button} ${styles.button} ${styles.danger}`} type="button">Delete</button>
               </Fragment>;
             return (
               <tr key={item.id}>
@@ -62,4 +61,4 @@ const List= ({...props}) => {
 }
 
 
-export default CSSModules(List, styles);
+export default List;

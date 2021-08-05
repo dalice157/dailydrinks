@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './InputField.css'
+import styles from './InputField.scss'
 
 class InputField extends Component {
   state = {
@@ -39,21 +39,21 @@ class InputField extends Component {
   render() {
 	const {nameVal, priceVal, notesVal} = this.state;
     return (
-      <form className="addWrap"  onSubmit={this.onAdd}>
-        <div className="row">
+      <form className={styles.addWrap} onSubmit={this.onAdd}>
+        <div className={styles.row}>
           <label htmlFor="Name">Name：</label>
           <input name="Name" onChange={this.onAddNameChange} value={nameVal} placeholder="請填寫 姓名..." type="text" />
         </div>
-        <div className="row">
+        <div className={styles.row}>
           <label htmlFor="Price">Price：</label>
           <input name="Price" type="number" onChange={this.onAddPriceChange} value={priceVal} placeholder="請填寫 價錢..." />
         </div>
-        <div className="row">
+        <div className={styles.row}>
           <label htmlFor="Notes">Notes：</label>
           <textarea name="Notes" rows="5" onChange={this.onAddNotesChange} value={notesVal} placeholder="請填寫 備註..." />
         </div>
-        <div className="btnWrap">
-          <button type="submit" className="button">Add</button>
+        <div className={styles.btnWrap}>
+          <button type="submit" className={styles.button}>Add</button>
         </div>
       </form>
     )

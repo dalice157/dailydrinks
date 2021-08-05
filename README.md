@@ -70,3 +70,15 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ## package.json config
 一定要在 package.json 裡加上 "homepage": "http://dalice157.github.io/資料夾名稱",
 打包的路徑才會在裡面
+
+## css Module 使用
+```
+const cssModuleRegex = /\.module\.css$/;
+改成
+const cssModuleRegex = /\.css$/;
+
+const sassModuleRegex = /\.module\.(scss|sass)$/;
+改成
+const sassModuleRegex = /\.(scss|sass)$/;
+```
+這樣 css Module 的 css 或 scss 才不用多 `.module` 才有動作

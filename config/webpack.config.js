@@ -1,4 +1,4 @@
-'use strict';
+
 
 const fs = require('fs');
 const isWsl = require('is-wsl');
@@ -39,9 +39,9 @@ const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 // style files regexes
 const cssRegex = /\.css$/;
-const cssModuleRegex = /\.module\.css$/;
+const cssModuleRegex = /\.css$/;
 const sassRegex = /\.(scss|sass)$/;
-const sassModuleRegex = /\.module\.(scss|sass)$/;
+const sassModuleRegex = /\.(scss|sass)$/;
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.

@@ -3,7 +3,7 @@ import Header from './Header';
 import List from './List';
 import InputField from './InputField'
 import orderItems from './order.json'
-import './App.css'
+import styles from './App.scss'
 
 
 class App extends Component {
@@ -87,7 +87,7 @@ class App extends Component {
     return (
       <Fragment>
         <Header logo="Daily Drinks" />
-        <div className="wrap">
+        <div className={styles.wrap}>
           <InputField 
             getLists={this.getLists}
             data={this.state.lists}
