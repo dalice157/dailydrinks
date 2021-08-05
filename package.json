@@ -47,7 +47,7 @@
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.1",
     "react-css-modules": "^4.7.11",
-    "react-dev-utils": "^11.0.4",
+    "react-dev-utils": "^9.0.1",
     "react-dom": "^16.8.6",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
@@ -64,9 +64,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "test": "node scripts/test.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -132,8 +130,5 @@
     "presets": [
       "react-app"
     ]
-  },
-  "devDependencies": {
-    "gh-pages": "^3.2.3"
   }
 }

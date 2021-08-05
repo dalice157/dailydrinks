@@ -66,3 +66,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## package.json config
+一定要在 package.json 裡加上 "homepage": "http://dalice157.github.io/資料夾名稱",
+打包的路徑才會在裡面
