@@ -1,4 +1,4 @@
-import React, {Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Header from './Header';
 import List from './List';
 import InputField from './InputField'
@@ -85,7 +85,7 @@ class App extends Component {
       onEditNotesChange: this.onEditNotesChange
     };
     return (
-      <Fragment>
+      <>
         <Header logo="Daily Drinks" />
         <div className={styles.wrap}>
           <InputField 
@@ -98,7 +98,7 @@ class App extends Component {
             onDel = {this.onDel}
           />
         </div>
-        </Fragment>
+        </>
     )
   }
 }

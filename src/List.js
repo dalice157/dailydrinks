@@ -1,8 +1,8 @@
-import React, {Fragment} from 'react';
+import React, {Component} from 'react';
 import styles from './List.scss';
-
-const List= ({...props}) => {
-	const {data, onDel, updateEvent} = props;
+class List extends Component {
+  render() {
+	const {data, onDel, updateEvent} = this.props;
 	const {onEdit, onUpdate, onEditNameChange, onEditPriceChange, onEditNotesChange } = updateEvent;
 	
   return (
@@ -21,10 +21,10 @@ const List= ({...props}) => {
             const isEditBtn = item.edit ? 
             <button onClick={()=>onUpdate(item.id)} className={styles.button} type="button">Update</button>
               :
-              <Fragment>
+              <>
               <button onClick={()=>onEdit(item.id)} className={styles.button} type="button">Edit</button>
               <button onClick={()=>onDel(item.id)} className={`${styles.button} ${styles.button} ${styles.danger}`} type="button">Delete</button>
-              </Fragment>;
+              </>;
             return (
               <tr key={item.id}>
               <td valign="middle">
@@ -58,7 +58,7 @@ const List= ({...props}) => {
       </tbody>
     </table>
   )
+  }
 }
-
 
 export default List;

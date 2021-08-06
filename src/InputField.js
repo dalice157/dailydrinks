@@ -26,31 +26,34 @@ class InputField extends Component {
       notesVal: ''
     });
   }
-  onAddNameChange = (e)=>{
-    this.setState({nameVal: e.target.value});
-  }
-  onAddPriceChange = (e)=>{
-    this.setState({priceVal: e.target.value});
-  }
-  onAddNotesChange = (e)=>{
-    this.setState({notesVal: e.target.value});
-  }
+
+  onAddChange = (e) => {
+    const {value, name} = e.target;
+    const targetName = {
+      userName: 'nameVal',
+      price: 'priceVal',
+      notes: 'notesVal'
+    }
+    this.setState({
+      [targetName[name]]: value
+    })
+  } 
 
   render() {
 	const {nameVal, priceVal, notesVal} = this.state;
     return (
       <form className={styles.addWrap} onSubmit={this.onAdd}>
         <div className={styles.row}>
-          <label htmlFor="Name">Name：</label>
-          <input name="Name" onChange={this.onAddNameChange} value={nameVal} placeholder="請填寫 姓名..." type="text" />
+          <label htmlFor="userName">Name：</label>
+          <input name="userName" onChange={this.onAddChange} value={nameVal} placeholder="請填寫 姓名..." type="text" />
         </div>
         <div className={styles.row}>
-          <label htmlFor="Price">Price：</label>
-          <input name="Price" type="number" onChange={this.onAddPriceChange} value={priceVal} placeholder="請填寫 價錢..." />
+          <label htmlFor="price">Price：</label>
+          <input name="price" type="number" onChange={this.onAddChange} value={priceVal} placeholder="請填寫 價錢..." />
         </div>
         <div className={styles.row}>
-          <label htmlFor="Notes">Notes：</label>
-          <textarea name="Notes" rows="5" onChange={this.onAddNotesChange} value={notesVal} placeholder="請填寫 備註..." />
+          <label htmlFor="notes">Notes：</label>
+          <textarea name="notes" rows="5" onChange={this.onAddChange} value={notesVal} placeholder="請填寫 備註..." />
         </div>
         <div className={styles.btnWrap}>
           <button type="submit" className={styles.button}>Add</button>
