@@ -65,8 +65,8 @@ class List extends Component {
               <td valign="middle">
                 {
                   item.edit?
-                  <input name="userName" onChange={(e) => this.onEditChange(e, item.id)} value={item.name} type="text" />:
-                  item.name
+                  <input name="userName" onChange={(e) => this.onEditChange(e, item.id)} value={item.userName} type="text" />:
+                  item.userName
                 }
               </td>
               <td valign="middle">

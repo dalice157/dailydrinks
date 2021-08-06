@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import styles from './InputField.scss';
 
-const errorMsgTitle = {
-  userName: '請填寫 姓名',
-  price: '請填寫 價錢',
-  notes: '請填寫 備註'
-}
+// const errorMsgTitle = {
+//   userName: '請填寫 姓名',
+//   price: '請填寫 價錢',
+//   notes: '請填寫 備註'
+// }
 
 class InputField extends Component {
   state = {
@@ -58,9 +58,9 @@ class InputField extends Component {
         <div className={styles.row}>
           <label htmlFor="userName">Name：</label>
           <input name="userName" onChange={this.onAddChange} value={nameVal} placeholder="請填寫 姓名..." type="text" />
-          {
+          {/* {
             this.state.errorMsg.userName && <div>{this.state.errorMsg.userName}</div>
-          }
+          } */}
         </div>
         <div className={styles.row}>
           <label htmlFor="price">Price：</label>
