@@ -9,5 +9,4 @@ const Header= ({logo}) => {
   )
 }
 
-
 export default Header;
