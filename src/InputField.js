@@ -13,6 +13,18 @@ class InputField extends Component {
     priceVal: '',
     notesVal: '',
     errorMsg: {},
+    isSubmit:true
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const {nameVal, priceVal, notesVal} = this.state;
+    if(prevState.nameVal !== nameVal || prevState.priceVal !== priceVal || prevState.notesVal !== notesVal) {
+      if(nameVal !== '' && priceVal !== '' && notesVal !== ''){
+        this.setState({
+          isSubmit: false
+        })
+      }
+    }
   }
 
   onAdd = (e)=>{
@@ -20,19 +32,22 @@ class InputField extends Component {
     const {data} = this.props;
     const {nameVal, priceVal, notesVal} = this.state;
     
-
-    const newList = [ ...data, {
-      id: data.length + 1, 
-      name: nameVal, 
-      price: priceVal,
-      notes: notesVal,
-      edit: false
-    }];
-    this.props.getLists(newList);
+    if(nameVal !== '' && priceVal !== '' && notesVal !== '') {
+      const newList = [ ...data, {
+        id: data.length + 1, 
+        userName: nameVal, 
+        price: priceVal,
+        notes: notesVal,
+        edit: false
+      }];
+      this.props.getLists(newList);
+    }
+    
     this.setState({
       nameVal: '',
       priceVal: '',
-      notesVal: ''
+      notesVal: '',
+      isSubmit: true
     });
   }
 
@@ -50,9 +65,9 @@ class InputField extends Component {
   } 
 
   render() {
-	const {nameVal, priceVal, notesVal} = this.state;
-  console.log('nameVal:', nameVal);
-  console.log('error:', this.state.errorMsg);
+    console.log('this.stat:', this.state);
+	const {nameVal, priceVal, notesVal, isSubmit} = this.state;
+  const disableBtnStyle = isSubmit ? styles.disabled : '';
     return (
       <form className={styles.addWrap} onSubmit={this.onAdd}>
         <div className={styles.row}>
@@ -71,7 +86,7 @@ class InputField extends Component {
           <textarea name="notes" rows="5" onChange={this.onAddChange} value={notesVal} placeholder="請填寫 備註..." />
         </div>
         <div className={styles.btnWrap}>
-          <button type="submit" className={styles.button}>Add</button>
+          <button type="submit" disabled={isSubmit} className={`${styles.button} ${disableBtnStyle}`}>Add</button>
         </div>
       </form>
     )
