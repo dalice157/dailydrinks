@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/dailydrinks/static/css/main.410bab96.chunk.css",
+    "main.js": "/dailydrinks/static/js/main.a57260a6.chunk.js",
+    "main.js.map": "/dailydrinks/static/js/main.a57260a6.chunk.js.map",
+    "runtime~main.js": "/dailydrinks/static/js/runtime~main.01af7d37.js",
+    "runtime~main.js.map": "/dailydrinks/static/js/runtime~main.01af7d37.js.map",
+    "static/js/2.2410ca9c.chunk.js": "/dailydrinks/static/js/2.2410ca9c.chunk.js",
+    "static/js/2.2410ca9c.chunk.js.map": "/dailydrinks/static/js/2.2410ca9c.chunk.js.map",
+    "index.html": "/dailydrinks/index.html",
+    "precache-manifest.f516b101b50115d9ac1a92a33761d6b1.js": "/dailydrinks/precache-manifest.f516b101b50115d9ac1a92a33761d6b1.js",
+    "service-worker.js": "/dailydrinks/service-worker.js",
+    "static/css/main.410bab96.chunk.css.map": "/dailydrinks/static/css/main.410bab96.chunk.css.map"
+  }
+}
